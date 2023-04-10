@@ -9,11 +9,8 @@ import { Platform } from "react-native";
 import { colors } from './../infrastructure/theme/colors';
 import { FlatList } from "react-native";
 import { Spacer } from "../components/spacer/spacer.component";
-const SafeArea = styled(SafeAreaView)`
-    flex:1;
-    ${Platform.OS === "android" ? `margin-top:${StatusBar.currentHeight}px` : 0};
+import { SafeArea } from './../components/utitlity/safe-area.component';
 
-`
 const SearchContainer = styled.View`
     padding:${props => props.theme.space[3]} ;
 `
