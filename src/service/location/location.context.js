@@ -11,14 +11,16 @@ export const LocationContextProvider = ({ children }) => {
     const [isLoading, setisLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const onSearch = (searchKeyword) => {
+    const onSearch = (searchKeyword = "Antwerp") => {
+        console.log(searchKeyword)
         setisLoading(true)
         setKeyword(searchKeyword)
-        locationRequest(keyword)
+        locationRequest(searchKeyword.toLowerCase())
             .then(locationTransform)
             .then(result => {
                 setisLoading(false)
                 setLocation(result)
+                console.log(result)
             })
             .catch(error => {
                 setisLoading(false)
