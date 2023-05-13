@@ -1,7 +1,7 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
-import { RestaurantsScreen } from "./src/screen/restaurants.screens";
+import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screens";
 import { theme } from './src/infrastructure/theme/index';
 import { useFonts, Oswald_400Regular } from "@expo-google-fonts/oswald";
 import { Lato_400Regular } from "@expo-google-fonts/lato";
@@ -12,7 +12,7 @@ import { Ionicons } from "@expo/vector-icons"
 import { Text } from "react-native";
 import { restaurantRequest } from "./src/service/restaurants/restaurant.service";
 import { RestaurantsContextProvider } from "./src/service/restaurants/restaurant.context";
-import { LocationContextProvider } from "./src/service/location/location.context";
+import { LocationContextProvider } from "./src/service/restaurants/location/location.context";
 
 export default function App() {
 
