@@ -7,8 +7,8 @@ import React, {
 } from "react";
 
 import {
-  restaurantsRequest,
-  restaurantsTransform,
+  restaurantRequest,
+  restaurantTransform,
 } from "./restaurant.service";
 
  
@@ -28,8 +28,8 @@ export const RestaurantsContextProvider = ({ children }) => {
     setRestaurants([]);
 
     setTimeout(() => {
-      restaurantsRequest(loc)
-        .then(restaurantsTransform)
+      restaurantRequest(loc)
+        .then(restaurantTransform)
         .then((results) => {
           setIsLoading(false);
           setRestaurants(results);
@@ -44,9 +44,8 @@ export const RestaurantsContextProvider = ({ children }) => {
     if (location) {
       const locationString = `${location.lat},${location.lng}`;
       retrieveRestaurants(locationString);
-      console.log(locationString, "ioposodisukh")
     }
-  }, []);
+  }, [location]);
 
   return (
     <RestaurantsContext.Provider
