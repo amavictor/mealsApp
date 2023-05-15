@@ -11,7 +11,7 @@ import {
   restaurantsTransform,
 } from "./restaurant.service";
 
-
+ 
 
 import { LocationContext } from "./location/location.context";
 
@@ -44,8 +44,9 @@ export const RestaurantsContextProvider = ({ children }) => {
     if (location) {
       const locationString = `${location.lat},${location.lng}`;
       retrieveRestaurants(locationString);
+      console.log(locationString, "ioposodisukh")
     }
-  }, [location]);
+  }, []);
 
   return (
     <RestaurantsContext.Provider
