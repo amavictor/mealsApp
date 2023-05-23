@@ -22,6 +22,7 @@ export default function App() {
     return <ActivityIndicator />
   }
 
+  //This is a restaurant request
   restaurantRequest()
 
   return (
