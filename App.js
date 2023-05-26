@@ -7,9 +7,9 @@ import { Lato_400Regular } from "@expo-google-fonts/lato";
 import { ActivityIndicator } from "react-native-paper";
 import { restaurantRequest } from "./src/service/restaurants/restaurant.service";
 import { RestaurantsContextProvider } from "./src/service/restaurants/restaurant.context";
-import { LocationContextProvider } from "./src/service/restaurants/location/location.context";
-import { Navigation }  from "./src/infrastructure/navigation/app.navigator";
-
+import { LocationContextProvider } from './src/service/location/location.context';
+import { Navigation } from "./src/infrastructure/navigation/app.navigator";
+import { FavouritesContextProvider } from './src/service/favourites/favourites.context';
 export default function App() {
 
   const [oswaldLoaded] = useFonts({
@@ -29,11 +29,13 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         {/* <RestaurantsScreen /> */}
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation/>
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
         <ExpoStatusBar style="auto" />
       </ThemeProvider>
 

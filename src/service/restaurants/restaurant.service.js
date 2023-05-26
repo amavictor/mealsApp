@@ -1,4 +1,4 @@
-import {mockImages, mocks} from "./mock"
+import {mockImages, mocks} from "../mock"
 import camelize from "camelize"
 
 export const restaurantRequest = (location) => {

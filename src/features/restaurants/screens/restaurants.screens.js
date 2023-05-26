@@ -6,8 +6,8 @@ import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { SafeArea } from "../../../components/utitlity/safe-area.component"
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
-
 import { RestaurantsContext } from "../../../service/restaurants/restaurant.context";
+import { FavouritesContext } from "../../../service/favourites/favourites.context";
 import { Search } from "../components/search.component";
 import { TouchableOpacity } from "react-native";
 
@@ -30,6 +30,7 @@ const LoadingContainer = styled.View`
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const { favourites } = useContext(FavouritesContext)
   return (
     <SafeArea>
       {isLoading && (

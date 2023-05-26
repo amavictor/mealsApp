@@ -2,18 +2,19 @@ import MapView, { Callout, Marker } from "react-native-maps";
 import styled from "styled-components";
 import { Search } from "../components/search.component";
 import { useContext } from 'react';
-import { LocationContext } from '../../../service/restaurants/location/location.context';
+// import { LocationContext } from "../../../service/location/location.context";
 import { RestaurantsContext } from '../../../service/restaurants/restaurant.context';
 import { useEffect, useState } from 'react';
-import { restaurantRequest } from '../../../service/restaurants/restaurant.service';
+// import { restaurantRequest } from '../../../service/restaurants/restaurant.service';
 import { MapCallout } from "../components/map-callout.component";
+import { LocationContext } from "../../../service/location/location.context";
 
 const Map = styled(MapView)`
     height: 100%;
     width: 100%;
-` 
+`   
 
-export const MapScreen = () => {
+export const MapScreen = ({navigation}) => {
 
     const { location } = useContext(LocationContext)
     const { restaurants } = useContext(RestaurantsContext)
@@ -21,7 +22,7 @@ export const MapScreen = () => {
 
     const { lat, lng, viewport } = location
 
-    console.log(viewport.northeast)
+    console.log(viewport.northeast, "This is the viewport")
 
 
     //This is to know where exactly the location marker needs to be
@@ -50,7 +51,7 @@ export const MapScreen = () => {
                             longitude: restaurant.geometry.location.lng,
                         }}
                     >
-                        <Callout>
+                        <Callout onPress={()=>navigation.navigate("RestaurantsDetails", {restaurant})}>
                             <MapCallout restaurant={restaurant} />
                         </Callout>
                     </Marker>
