@@ -1,0 +1,13 @@
+ {
+    "root": true,
+    "extends": ["eslint:recommended", "plugin:react/recommended", "@react-native-community"],
+    "plugins": ["react", "react-native"],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "quotes": [2, "double", { "avoidEscape": true }]
+    }
+  }
