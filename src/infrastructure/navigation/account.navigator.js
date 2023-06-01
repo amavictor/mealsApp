@@ -10,6 +10,7 @@ export const AccountNavigator = () => {
     return (
         <Stack.Navigator headerMode="none">
             <Stack.Screen
+                scree
                 name="Main"
                 component={AccountScreen} />
             <Stack.Screen

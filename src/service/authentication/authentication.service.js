@@ -32,13 +32,5 @@ export const auth = getAuth(app);
 // }, [])
 
 
-export const loginRequest = (email, password) => {
+export const loginRequest = (email, password) => 
   signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    console.log(userCredential)
-    setIsAuthenticated(true);
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-}

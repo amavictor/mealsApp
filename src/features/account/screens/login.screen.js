@@ -9,15 +9,17 @@ import {
     Title,
     ErrorContainer
 } from "../components/acount.styles"
+import { ActivityIndicator, Colors } from "react-native"
+import { colors } from "../../../infrastructure/theme/colors"
 import { useState, useContext } from "react"
-import {Text} from "../../../components/typography/text.component"
+import { Text } from "../../../components/typography/text.component"
 
 export const LoginScreen = () => {
 
-    const[email, setEmail] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const { onLogin, error } = useContext(AuthenticationContext)
-    
+    const { onLogin, isLoading, error } = useContext(AuthenticationContext)
+
 
     return (
         <AccountBackground>
@@ -30,7 +32,7 @@ export const LoginScreen = () => {
                     textContentType="emailAddress"
                     keyboardType="email-address"
                     autoCapitalize="none"
-                    onChangeText={(u)=>setEmail(u)}
+                    onChangeText={(u) => setEmail(u)}
                 />
 
                 <Spacer size="large">
@@ -40,7 +42,7 @@ export const LoginScreen = () => {
                         textContentType="password"
                         secureTextEntry
                         autoCapitalize="none"
-                        onChangeText={(p)=>setPassword(p)}
+                        onChangeText={(p) => setPassword(p)}
                     />
                 </Spacer>
                 {error && (
@@ -51,19 +53,25 @@ export const LoginScreen = () => {
                     </ErrorContainer>
                 )}
                 <Spacer size="large">
-                    <AuthButton
-                        icon="lock-open-outline"
-                        mode="contained"
-                        onPress={() => onLogin(email, password)}
-                    >
-                        Login
-                    </AuthButton>
+                    {
+                        isLoading ?
+                            <ActivityIndicator animating={true} color={colors.primary} />
+                            :
+                            <AuthButton
+                                icon="lock-open-outline"
+                                mode="contained"
+                                onPress={() => onLogin(email, password)}
+                            >
+                                Login
+                            </AuthButton>
+                    }
+
                 </Spacer>
             </AccountContainer>
             <Spacer size={"large"}>
                 <AuthButton
                     mode="contained"
-                    onPress={()=>navigation.goBack()}
+                    onPress={() => navigation.goBack()}
                 >
                     Back
                 </AuthButton>

@@ -4,13 +4,16 @@ import {
   AccountCover,
   AccountContainer,
   AuthInput,
-  AuthButton
+  AuthButton,
+  ErrorContainer
 } from '../components/acount.styles'
+import { ActivityIndicator, Colors } from 'react-native'
 import { Spacer } from '../../../components/spacer/spacer.component'
 import { Text } from '../../../components/typography/text.component'
 import { useContext, useState } from 'react'
 import { AuthenticationContext } from '../../../service/authentication/authentication.context'
 import { Title } from '../components/acount.styles'
+import { colors } from '../../../infrastructure/theme/colors'
 
 
 export const RegisterScreen = ({ navigation }) => {
@@ -18,7 +21,7 @@ export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [repeatedPassword, setRepeatedPassword] = useState("")
-  const { onRegister, error } = useContext(AuthenticationContext)
+  const { onRegister, isLoading, error } = useContext(AuthenticationContext)
 
 
   return (
@@ -65,13 +68,17 @@ export const RegisterScreen = ({ navigation }) => {
             </ErrorContainer>
           )}
           <Spacer size="large">
-            <AuthButton
-              icon="email"
-              mode="contained"
-              onPress={() => onRegister(email, password, repeatedPassword)}
-            >
-              Register
-            </AuthButton>
+            {
+              isLoading ? <ActivityIndicator animating={true} color={colors.primary} /> :
+                <AuthButton
+                  icon="email"
+                  mode="contained"
+                  onPress={() => onRegister(email, password, repeatedPassword)}
+                >
+                  Register
+                </AuthButton>
+            }
+
           </Spacer>
         </AccountContainer>
       </KeyboardAvoidingView>
