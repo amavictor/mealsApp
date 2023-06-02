@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { FlatList } from "react-native";
 import styled from "styled-components/native";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
@@ -11,12 +10,9 @@ import { FavouritesContext } from "../../../service/favourites/favourites.contex
 import { Search } from "../components/search.component";
 import { TouchableOpacity } from "react-native";
 import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
+import { RestaurantList } from "../components/restaurant-list.styles";
+import { FadeInView } from '../../../components/animations/fade.animation';
 
-const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
 
 
 
@@ -30,7 +26,7 @@ const LoadingContainer = styled.View`
 `;
 
 export const RestaurantsScreen = ({ navigation }) => {
-  const { isLoading,restaurants } = useContext(RestaurantsContext);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
   const { favourites } = useContext(FavouritesContext)
   const [isToggled, setIsToggled] = useState(false)
   return (
@@ -42,14 +38,14 @@ export const RestaurantsScreen = ({ navigation }) => {
       )}
       <Search
         isFavouritesToggled={isToggled}
-        onFavouritesToggle={() => setIsToggled(!isToggled)} 
-        
+        onFavouritesToggle={() => setIsToggled(!isToggled)}
+
       />
-      {isToggled && 
+      {isToggled &&
         <FavouritesBar
-        favourites={favourites}
-        onNavigate={navigation.navigate}
-      />
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        />
       }
       <RestaurantList
         data={restaurants}
@@ -59,7 +55,9 @@ export const RestaurantsScreen = ({ navigation }) => {
               restaurant: item
             })}>
               <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
 
